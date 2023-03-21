@@ -8,8 +8,15 @@
   },
   "scripts": {
     "dev:scan": "ts-node src/main.ts scan",
+    "build": "tsc --project ./tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "lib",
+    "src",
+    "LICENSE",
+    "README.MD"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
