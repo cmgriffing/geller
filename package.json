@@ -1,6 +1,6 @@
 {
-  "name": "precog",
-  "version": "1.0.0",
+  "name": "agatha",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
