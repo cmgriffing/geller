@@ -37,7 +37,6 @@ Scan is the currently the only command for the tool besides help. It will scan a
 
 ## Roadmap
 
-- `.env` support
 - ESLint plugin?
 - Github Action
 - Other languages?
