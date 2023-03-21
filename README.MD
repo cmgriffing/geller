@@ -4,7 +4,9 @@
 
 The intended environment for `geller` is in a CI/CD pipeline. Without local `.env` support, geller is less useful in a dev environment.
 
-The name geller is a reference to the film Minority Report and the primary "pre-cog", geller.
+The name `geller` is a reference to Uri Geller, a famous psychic.
+
+![A photo of Uri Geller holding keys](./readme/uri-geller.jpeg)
 
 ## Install
 
