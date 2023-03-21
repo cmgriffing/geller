@@ -2,25 +2,26 @@
   "name": "agatha",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "bin": {
+    "agatha": "./lib/index.js"
+  },
   "scripts": {
-    "scan": "ts-node src/main.ts scan",
+    "dev:scan": "ts-node src/main.ts scan",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fs-extra": "^11.1.0",
-    "glob": "^9.3.0",
     "ts-morph": "^17.0.1",
     "typescript": "^5.0.2",
-    "unist-util-select": "^4.0.3",
     "yargs": "^17.7.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
     "@types/glob": "^8.1.0",
+    "@types/node": "^18.15.5",
     "@types/yargs": "^17.0.22"
   }
 }
