@@ -1,26 +1,26 @@
-# agatha
+# geller
 
-`agatha` is a pre-build step to help you identify undefined environment variables as well as mistyped environment variable names.
+`geller` is a pre-build step to help you identify undefined environment variables as well as mistyped environment variable names.
 
-The intended environment for `agatha` is in a CI/CD pipeline. Without local `.env` support, agatha is less useful in a dev environment.
+The intended environment for `geller` is in a CI/CD pipeline. Without local `.env` support, geller is less useful in a dev environment.
 
-The name Agatha is a reference to the film Minority Report and the primary "pre-cog", Agatha.
+The name geller is a reference to the film Minority Report and the primary "pre-cog", geller.
 
 ## Install
 
 ```bash
-npm install -D agatha
+npm install -D geller
 // OR
-yarn add -D agatha
+yarn add -D geller
 // OR
-pnpm add -D agatha
+pnpm add -D geller
 ```
 
 ## Usage
 
-You can run `agatha` manually:
+You can run `geller` manually:
 ```bash
-agatha scan -g ./foo.ts
+geller scan -g ./foo.ts
 ```
 
 ## Commands
@@ -31,7 +31,7 @@ Scan is the currently the only command for the tool besides help. It will scan a
 
 #### Args
 
-- **-g** **--globs** : `string` : When passing a glob with `*`, you will need to wrap the glob in quotes to prevent the OS from autocompleting the glob. To pass multiple globs, use multiple flags. eg: `agatha -g "./foo/**.ts" -g "./bar/**.ts"`
+- **-g** **--globs** : `string` : When passing a glob with `*`, you will need to wrap the glob in quotes to prevent the OS from autocompleting the glob. To pass multiple globs, use multiple flags. eg: `geller -g "./foo/**.ts" -g "./bar/**.ts"`
 
 ## Roadmap
 

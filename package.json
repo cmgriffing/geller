@@ -1,10 +1,10 @@
 {
-  "name": "agatha",
+  "name": "geller",
   "version": "0.0.1",
   "description": "",
   "main": "./lib/index.js",
   "bin": {
-    "agatha": "./lib/index.js"
+    "geller": "./lib/index.js"
   },
   "scripts": {
     "dev:scan": "ts-node src/main.ts scan",
