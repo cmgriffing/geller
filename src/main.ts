@@ -15,20 +15,28 @@ async function main() {
     .example("$0 scan -g ./src/**/*.js", "count the lines in the given file")
     .alias("g", "glob")
     .describe("g", "Glob(s) to be scanned")
+    .alias("e", "env")
+    .describe("e", "env file(s) to be scanned")
     .demandOption(["g"])
     .help("h")
     .alias("h", "help")
     .epilog(`copyright ${new Date().getFullYear()}`).argv;
 
-  const { g } = argv;
+  const { g, e } = argv;
+  const globs = arrayifyArg(g, []);
+  const envs = arrayifyArg(e, [".env"]);
 
-  let globs = g as string | string[];
+  const variables = getUsedEnvVarsSync(globs, {
+    envs,
+  });
+}
 
-  console.log({ globs });
+function arrayifyArg(arg: unknown, defaultValue: string | string[]) {
+  let args = (arg as string | string[]) || defaultValue;
 
-  if (!Array.isArray(globs)) {
-    globs = [globs];
+  if (!Array.isArray(args)) {
+    args = [args];
   }
 
-  const variables = getUsedEnvVarsSync(globs, {});
+  return args;
 }

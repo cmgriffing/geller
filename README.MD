@@ -2,8 +2,6 @@
 
 `geller` is a pre-build step to help you identify undefined environment variables as well as mistyped environment variable names.
 
-The intended environment for `geller` is in a CI/CD pipeline. Without local `.env` support, geller is less useful in a dev environment.
-
 The name `geller` is a reference to Uri Geller, a famous psychic.
 
 ![A photo of Uri Geller holding keys](./readme/uri-geller.jpeg)
@@ -33,12 +31,16 @@ Scan is the currently the only command for the tool besides help. It will scan a
 
 #### Args
 
-- **-g** **--globs** : `string` : When passing a glob with `*`, you will need to wrap the glob in quotes to prevent the OS from autocompleting the glob. To pass multiple globs, use multiple flags. eg: `geller -g "./foo/**.ts" -g "./bar/**.ts"`
+- **-g** **--glob** : `string` : When passing a glob with `*`, you will need to wrap the glob in quotes to prevent the OS from autocompleting the glob. To pass multiple globs, use multiple flags. eg: `geller -g "./foo/**.ts" -g "./bar/**.ts"`
+
+- **-e** **--env** : `string` : The `.env` file you would like to parse. Defaults to `./.env` if the file is present. To pass multiple envs, use multiple flags. eg: `geller -g "./foo/**.ts" e .env -e .env.local`
 
 ## Roadmap
 
 - `.env` support
 - ESLint plugin?
+- Github Action
+- Other languages?
 
 ## License
 

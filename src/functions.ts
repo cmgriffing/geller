@@ -1,6 +1,16 @@
 import { Identifier, Project, SyntaxKind } from "ts-morph";
+import * as fs from "fs";
+import * as envfile from "envfile";
+import path = require("path");
 
-export function getUsedEnvVarsSync(globs: string[], config: {}) {
+export function getUsedEnvVarsSync(
+  globs: string[],
+  {
+    envs,
+  }: {
+    envs?: string[];
+  }
+) {
   // load in all file paths to TS
   const project = new Project({});
   project.addSourceFilesAtPaths(globs);
@@ -76,8 +86,29 @@ export function getUsedEnvVarsSync(globs: string[], config: {}) {
 
   const usedEnvVars = [...basicEnvVars, ...destructuredEnvVars] as string[];
 
+  const dotEnvVars: Record<string, boolean> = {};
+
+  if (envs) {
+    envs.forEach((env) => {
+      const envPath = path.resolve(process.cwd(), env);
+      if (fs.existsSync(envPath)) {
+        try {
+          const envFileContents = fs.readFileSync(envPath, {
+            encoding: "utf8",
+          });
+          const parsedDotEnv = envfile.parse(envFileContents);
+          Object.keys(parsedDotEnv).forEach((newEnvVar) => {
+            dotEnvVars[newEnvVar] = true;
+          });
+        } catch (e: any) {
+          console.warn(`Could not load env file: ${env}`);
+        }
+      }
+    });
+  }
+
   const undefinedEnvVars = usedEnvVars.filter((envVar) => {
-    return typeof process.env[envVar] === "undefined";
+    return !dotEnvVars[envVar] && typeof process.env[envVar] === "undefined";
   });
 
   if (undefinedEnvVars.length) {
