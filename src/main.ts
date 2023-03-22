@@ -26,7 +26,7 @@ async function main() {
   const globs = arrayifyArg(g, []);
   const envs = arrayifyArg(e, [".env"]);
 
-  const variables = getUsedEnvVarsSync(globs, {
+  getUsedEnvVarsSync(globs, {
     envs,
   });
 }
