@@ -1,10 +1,10 @@
 {
   "name": "geller",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
-  "main": "./lib/index.js",
+  "main": "./lib/main.js",
   "bin": {
-    "geller": "./lib/index.js"
+    "geller": "./lib/main.js"
   },
   "scripts": {
     "dev:scan": "ts-node src/main.ts scan",
