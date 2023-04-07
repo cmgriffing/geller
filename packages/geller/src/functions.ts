@@ -3,6 +3,31 @@ import * as fs from "fs";
 import * as envfile from "envfile";
 import path = require("path");
 
+export function getDotEnvVarsSync(envs?: string[], cwd = process.cwd()) {
+  const dotEnvVars: Record<string, boolean> = {};
+
+  if (envs) {
+    envs.forEach((env) => {
+      const envPath = path.resolve(cwd, env);
+      if (fs.existsSync(envPath)) {
+        try {
+          const envFileContents = fs.readFileSync(envPath, {
+            encoding: "utf8",
+          });
+          const parsedDotEnv = envfile.parse(envFileContents);
+          Object.keys(parsedDotEnv).forEach((newEnvVar) => {
+            dotEnvVars[newEnvVar] = true;
+          });
+        } catch (e: any) {
+          console.warn(`Could not load env file: ${env}`);
+        }
+      }
+    });
+  }
+
+  return dotEnvVars;
+}
+
 export function getUsedEnvVarsSync(
   globs: string[],
   {
@@ -17,17 +42,18 @@ export function getUsedEnvVarsSync(
 
   // TODO?: possibly handle JS separately
 
-  const processNodes: Identifier[] = [];
   const processEnvNodes: Identifier[] = [];
 
   project.getSourceFiles().forEach((sourceFile, index) => {
-    const fileProcessNodes = sourceFile
-      .getDescendantsOfKind(SyntaxKind.Identifier)
-      .filter((identifier) => identifier.getText() === "process");
+    const identifierNodes = sourceFile.getDescendantsOfKind(
+      SyntaxKind.Identifier
+    );
+
+    const fileProcessNodes = identifierNodes.filter(
+      (identifier) => identifier.getText() === "process"
+    );
 
     if (fileProcessNodes.length) {
-      processNodes.push(...fileProcessNodes);
-
       const fileProcessEnvNodes = fileProcessNodes
         .map((processIdentifier) =>
           processIdentifier
@@ -86,26 +112,7 @@ export function getUsedEnvVarsSync(
 
   const usedEnvVars = [...basicEnvVars, ...destructuredEnvVars] as string[];
 
-  const dotEnvVars: Record<string, boolean> = {};
-
-  if (envs) {
-    envs.forEach((env) => {
-      const envPath = path.resolve(process.cwd(), env);
-      if (fs.existsSync(envPath)) {
-        try {
-          const envFileContents = fs.readFileSync(envPath, {
-            encoding: "utf8",
-          });
-          const parsedDotEnv = envfile.parse(envFileContents);
-          Object.keys(parsedDotEnv).forEach((newEnvVar) => {
-            dotEnvVars[newEnvVar] = true;
-          });
-        } catch (e: any) {
-          console.warn(`Could not load env file: ${env}`);
-        }
-      }
-    });
-  }
+  const dotEnvVars = getDotEnvVarsSync(envs);
 
   const undefinedEnvVars = usedEnvVars.filter((envVar) => {
     return !dotEnvVars[envVar] && typeof process.env[envVar] === "undefined";

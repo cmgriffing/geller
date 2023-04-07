@@ -1,19 +1,53 @@
 # geller
 
-`geller` is a pre-build step and ESLint rule to help you identify undefined environment variables as well as mistyped environment variable names.
+`geller` is a pre-build step cli tool to help you identify undefined environment variables as well as mistyped environment variable names.
 
 The name `geller` is a reference to Uri Geller, a famous psychic.
 
 ![A photo of Uri Geller holding keys](./readme/uri-geller.jpeg)
 
-## Tools
+## Install
 
-`geller` is currently comprised of 2 tools.
+```bash
+npm install -D geller
+// OR
+yarn add -D geller
+// OR
+pnpm add -D geller
+```
 
-- [geller](./packages/geller): This is the CLI tool that you can use outside of ESLint based projects.
+## Usage
 
-- [eslint-plugin-geller](./packages/eslint-plugin-geller): This is an ESLint plugin and rule that you can use in your existing ESLint based projects.
+You can run `geller` manually:
 
+```bash
+geller scan -g ./foo.ts
+```
+
+It is usually ideal to make it part of a `prebuild` step:
+
+```javascript
+{
+  "prebuild": "geller scan -g ./src/**/*.ts"
+}
+```
+
+## Commands
+
+### `scan`
+
+Scan is the currently the only command for the tool besides help. It will scan a glob or series of globs for environment variables and check to see if they are defined in the current environment.
+
+#### Args
+
+- **-g** **--glob** : `string` : When passing a glob with `*`, you will need to wrap the glob in quotes to prevent the OS from autocompleting the glob. To pass multiple globs, use multiple flags. eg: `geller -g "./foo/**.ts" -g "./bar/**.ts"`
+
+- **-e** **--env** : `string` : The `.env` file you would like to parse. Defaults to `./.env` if the file is present. To pass multiple envs, use multiple flags. eg: `geller -g "./foo/**.ts" e .env -e .env.local`
+
+## Roadmap
+
+- Github Action
+- Other languages?
 
 ## License
 

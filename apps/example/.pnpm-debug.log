@@ -1,0 +1,167 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 4,
+    "total": 4,
+    "workspacePrefix": "/Volumes/T7/repos/precog"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "geller-monorepo",
+      "private": true,
+      "version": "1.0.0",
+      "description": "",
+      "workspaces": [
+        "apps",
+        "packages"
+      ],
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "devDependencies": {
+        "generator-eslint": "^4.1.3",
+        "yo": "^4.3.1"
+      }
+    },
+    "prefix": "/Volumes/T7/repos/precog"
+  },
+  "2 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "geller",
+      "version": "0.1.2",
+      "description": "",
+      "main": "./lib/main.js",
+      "bin": {
+        "geller": "./lib/main.js"
+      },
+      "scripts": {
+        "dev:scan": "ts-node src/main.ts scan",
+        "build": "tsc --project ./tsconfig.json",
+        "prepublish": "pnpm build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "files": [
+        "lib",
+        "src",
+        "LICENSE",
+        "README.MD"
+      ],
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "envfile": "^6.18.0",
+        "fs-extra": "^11.1.1",
+        "ts-morph": "^17.0.1",
+        "typescript": "^5.0.2",
+        "yargs": "^17.7.1"
+      },
+      "devDependencies": {
+        "@types/fs-extra": "^11.0.1",
+        "@types/glob": "^8.1.0",
+        "@types/node": "^18.15.5",
+        "@types/yargs": "^17.0.22"
+      }
+    },
+    "prefix": "/Volumes/T7/repos/precog/packages/geller"
+  },
+  "3 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "eslint-plugin-geller-id",
+      "version": "0.0.0",
+      "description": "An ESLint wrapper around Geller to identify undefined env vars",
+      "keywords": [
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin"
+      ],
+      "author": "geller",
+      "main": "./dist/index.js",
+      "exports": "./dist/index.js",
+      "scripts": {
+        "build": "tsc",
+        "lint": "npm-run-all \"lint:*\"",
+        "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
+        "lint:js": "eslint .",
+        "test": "mocha tests --recursive",
+        "update:eslint-docs": "eslint-doc-generator"
+      },
+      "dependencies": {
+        "geller": "workspace:*"
+      },
+      "devDependencies": {
+        "@typescript-eslint/types": "^5.57.1",
+        "@typescript-eslint/utils": "^5.57.1",
+        "eslint": "^8.19.0",
+        "eslint-doc-generator": "^1.0.0",
+        "eslint-plugin-eslint-plugin": "^5.0.0",
+        "eslint-plugin-node": "^11.1.0",
+        "mocha": "^10.0.0",
+        "npm-run-all": "^4.1.5",
+        "typescript": "^5.0.3"
+      },
+      "engines": {
+        "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"
+      },
+      "peerDependencies": {
+        "eslint": ">=7"
+      },
+      "license": "ISC"
+    },
+    "prefix": "/Volumes/T7/repos/precog/packages/eslint-plugin-geller"
+  },
+  "4 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "geller-example",
+      "private": true,
+      "version": "1.0.0",
+      "description": "",
+      "workspaces": [
+        "apps",
+        "packages"
+      ],
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "devDependencies": {
+        "@typescript-eslint/parser": "*",
+        "eslint": "*",
+        "eslint-plugin-geller": "workspace:*"
+      }
+    },
+    "prefix": "/Volumes/T7/repos/precog/apps/example"
+  },
+  "5 debug pnpm:context": {
+    "currentLockfileExists": true,
+    "storeDir": "/Volumes/T7/.pnpm-store/v3",
+    "virtualStoreDir": "/Volumes/T7/repos/precog/node_modules/.pnpm"
+  },
+  "6 debug pnpm:stage": {
+    "prefix": "/Volumes/T7/repos/precog",
+    "stage": "resolution_started"
+  },
+  "7 debug pnpm:_dependency_resolved": {
+    "resolution": "link:../geller",
+    "wanted": {
+      "dependentId": "packages/eslint-plugin-geller",
+      "name": "geller",
+      "rawSpec": "workspace:*"
+    }
+  },
+  "8 error pnpm": {
+    "code": "ERR_PNPM_NO_MATCHING_VERSION_INSIDE_WORKSPACE",
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "In : No matching version found for eslint-plugin-geller@* inside the workspace",
+      "code": "ERR_PNPM_NO_MATCHING_VERSION_INSIDE_WORKSPACE",
+      "stack": "pnpm: In : No matching version found for eslint-plugin-geller@* inside the workspace\n    at tryResolveFromWorkspace (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:84820:15)\n    at resolveNpm (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:84712:39)\n    at Object.resolve (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:84942:34)\n    at ctx.requestsQueue.add.priority (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:91980:75)\n    at run (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:91741:90)\n    at PQueue._tryToStartAnother (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:91695:13)\n    at /Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:91754:16\n    at new Promise (<anonymous>)\n    at PQueue.add (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:91736:16)\n    at resolveAndFetch (/Users/cmgriffing/Library/pnpm/global/5/.pnpm/pnpm@7.2.1/node_modules/pnpm/dist/pnpm.cjs:91980:55)"
+    }
+  }
+}
