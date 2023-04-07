@@ -1,7 +1,8 @@
 {
   "name": "geller",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
+  "repository": "https://github.com/cmgriffing/geller/packages/geller",
   "main": "./lib/index.js",
   "bin": {
     "geller": "./lib/cli.js"
