@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-geller",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "An ESLint wrapper around geller to identify undefined env vars",
   "repository": "https://github.com/cmgriffing/geller/packages/eslint-plugin-geller",
   "keywords": [
@@ -18,7 +18,8 @@
     "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
     "lint:js": "eslint .",
     "test": "mocha tests --recursive",
-    "update:eslint-docs": "eslint-doc-generator"
+    "update:eslint-docs": "eslint-doc-generator",
+    "prepublish": "pnpm build"
   },
   "dependencies": {
     "geller": "workspace:*"
@@ -42,5 +43,5 @@
   "peerDependencies": {
     "eslint": ">=7"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
