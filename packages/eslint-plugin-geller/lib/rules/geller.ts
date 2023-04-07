@@ -7,11 +7,7 @@ const createRule = ESLintUtils.RuleCreator(
 
 export const geller: any = createRule({
   create(context) {
-    console.log({ context });
-    console.log({ cwd: process.cwd() });
-
     const { envs, cwd } = context.options?.[0] || {};
-
     const dotEnvVars = getDotEnvVarsSync(envs, cwd);
 
     return {
@@ -48,11 +44,8 @@ export const geller: any = createRule({
           nodeInitAny?.property.name === "env" &&
           node.id.type === "ObjectPattern"
         ) {
-          // console.log("declaraTOR", node.id);
           // TODO: duh
           const declaredProperties = (node.id as any).properties as any[];
-
-          // console.log("init", node.init);
 
           if (declaredProperties) {
             declaredProperties.forEach((prop) => {
