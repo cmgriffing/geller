@@ -4,7 +4,7 @@
 
 The name `geller` is a reference to Uri Geller, a famous psychic.
 
-![A photo of Uri Geller holding keys](./readme/uri-geller.jpeg)
+![A photo of Uri Geller holding keys](../../readme/uri-geller.jpeg)
 
 ## Install
 
